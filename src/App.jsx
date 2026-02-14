@@ -11,17 +11,31 @@ const App = () => {
   const renderContent = () => {
     if (!isSubscribed && (activeTab === 'analysis' || activeTab === 'stats' || activeTab === 'payment')) {
       return (
-        <div className="payment-card card">
-          <h2>Premium Access Required</h2>
-          <p>모든 고급 분석과 통계 기능을 이용하려면 결제가 필요합니다.</p>
-          <div className="bank-info">
-            {import.meta.env.VITE_BANK_ACCOUNT_NUMBER || '현장 결제 문의'} ({import.meta.env.VITE_BANK_ACCOUNT_HOLDER || 'SwingTech'})
+        <div className="payment-card card fade-in">
+          <h2 style={{ fontSize: '1.8rem', background: 'var(--accent-gradient)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', marginBottom: '10px' }}>Premium Membership</h2>
+          <p style={{ color: 'var(--text-sub)', marginBottom: '30px' }}>AI 코치의 정밀 정석 교정과 무제한 분석 기능을 경험하세요.</p>
+
+          <div className="bank-card">
+            <div className="bank-detail">
+              <span className="bank-label">입금 은행 및 계좌</span>
+              <span className="bank-value">{import.meta.env.VITE_BANK_ACCOUNT_NUMBER || '카카오뱅크 3333-01-xxxx'}</span>
+            </div>
+            <div className="bank-detail">
+              <span className="bank-label">예금주</span>
+              <span className="bank-value">{import.meta.env.VITE_BANK_ACCOUNT_HOLDER || '스윙테크 AI'}</span>
+            </div>
+            <div className="bank-detail" style={{ border: 'none' }}>
+              <span className="bank-label">이용 금액</span>
+              <span className="bank-value" style={{ color: 'var(--primary)' }}>9,900원 / 월</span>
+            </div>
           </div>
-          <p style={{ color: 'var(--text-sub)', fontSize: '0.9rem', marginBottom: '24px' }}>
-            입금 후 5분 내로 자동 승인됩니다.
+
+          <p style={{ color: 'var(--text-sub)', fontSize: '0.85rem', marginTop: '20px', marginBottom: '30px' }}>
+            입금 확인 후 프리미엄 기능이 즉시 활성화됩니다.
           </p>
-          <button className="btn-primary" onClick={() => setIsSubscribed(true)}>
-            입금 완료 (데모용)
+
+          <button className="btn-primary" style={{ width: '100%', padding: '15px', fontSize: '1rem' }} onClick={() => setIsSubscribed(true)}>
+            입금 완료 확인 (데모용)
           </button>
         </div>
       );
